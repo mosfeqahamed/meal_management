@@ -1,0 +1,150 @@
+/* Reset and box-sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page container */
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* Navigation links */
+nav {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+nav a {
+  margin: 0 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Form styling */
+form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+form input,
+form select,
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+form button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+form button:hover {
+  background: #0056b3;
+}
+
+/* Link styling for index page links (unchanged) */
+a {
+  display: inline-block;
+  margin: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+th,
+td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+th {
+  background: #f0f0f0;
+  font-weight: 600;
+}
+tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+  form {
+    padding: 1rem;
+  }
+  nav a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+}
+
+/* === ADDED: ensure full viewport height for centering container === */  /* ADDED */
+html, body {                                                              /* ADDED */
+  height: 100%;                                                           /* ADDED */
+}                                                                          /* ADDED */
+
+/* === ADDED: center content on index.html === */                          /* ADDED */
+.centered-container {                                                      /* ADDED */
+  display: flex;                                                           /* ADDED */
+  flex-direction: column;                                                  /* ADDED */
+  align-items: center;                                                     /* ADDED */
+  justify-content: center;                                                 /* ADDED */
+  height: 80vh;                                                            /* ADDED */
+  text-align: center;                                                      /* ADDED */
+}                                                                          /* ADDED */
+
+/* === ADDED: style “Login”/“Register” links as buttons === */              /* ADDED */
+.btn {                                                                     /* ADDED */
+  display: inline-block;                                                   /* ADDED */
+  padding: 0.75rem 1.5rem;                                                 /* ADDED */
+  margin: 0.5rem;                                                          /* ADDED */
+  background: #007bff;                                                     /* ADDED */
+  color: #fff;                                                             /* ADDED */
+  border-radius: 4px;                                                      /* ADDED */
+  text-decoration: none;                                                   /* ADDED */
+  font-weight: 500;                                                        /* ADDED */
+  transition: background 0.3s;                                             /* ADDED */
+}                                                                          /* ADDED */
+.btn:hover {                                                               /* ADDED */
+  background: #0056b3;                                                     /* ADDED */
+}                                                                          /* ADDED */

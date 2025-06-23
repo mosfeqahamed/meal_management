@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reset Your Password</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { font-family: sans-serif; max-width:400px; margin:2rem auto; }
+    form { display:flex; flex-direction:column; gap:1rem; }
+    input,button { padding:.5rem; font-size:1rem; }
+    .hidden { display:none; }
+    .message { text-align:center; margin-top:1rem; }
+    .error{color:#c00;} .success{color:#080;}
+  </style>
+</head>
+<body>
+  <h2>Reset Your Password</h2>
+
+  <!-- STEP 1: request reset email -->
+  <form id="emailForm">
+    <input type="email" id="email" placeholder="Your email" required />
+    <button type="submit">Send reset link</button>
+  </form>
+
+  <!-- STEP 2: confirm with UID+token -->
+  <form id="confirmForm" class="hidden">
+    <input type="text"     id="uid"             placeholder="UID (from email link)"  required />
+    <input type="text"     id="token"           placeholder="Token (from email link)"required />
+    <input type="password" id="new_password"    placeholder="New password" required />
+    <input type="password" id="re_new_password" placeholder="Confirm password" required />
+    <button type="submit">Change Password</button>
+  </form>
+
+  <div id="message" class="message"></div>
+
+  <div style="text-align:center; margin-top:2rem;">
+    <a href="login.html">
+      <button type="button">Back to Login</button>
+    </a>
+  </div>
+
+  <script>
+    const API = 'http://127.0.0.1:8000';
+    const eForm = document.getElementById('emailForm');
+    const cForm = document.getElementById('confirmForm');
+    const msg   = document.getElementById('message');
+
+    function setMessage(text, isErr=false) {
+      msg.textContent = text;
+      msg.className = isErr ? 'message error' : 'message success';
+    }
+
+    // STEP 1: ask Djoser to email reset link
+    eForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      try {
+        const res = await fetch(`${API}/auth/users/reset_password/`, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email: document.getElementById('email').value })
+        });
+        if (!res.ok) throw 0;
+        setMessage('Link sent! Check your email.');
+        eForm.classList.add('hidden');
+        cForm.classList.remove('hidden');
+      } catch {
+        setMessage('Could not send link.', true);
+      }
+    });
+
+    // STEP 2: submit uid+token+new password
+    cForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const uid  = document.getElementById('uid').value;
+      const tok  = document.getElementById('token').value;
+      const pw   = document.getElementById('new_password').value;
+      const pw2  = document.getElementById('re_new_password').value;
+      if (pw !== pw2) return setMessage('Passwords do not match.', true);
+
+      try {
+        const res = await fetch(`${API}/auth/users/reset_password_confirm/`, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ uid, token: tok, new_password: pw, re_new_password: pw2 })
+        });
+        if (!res.ok) throw 0;
+        setMessage('Password reset! You can now log in.', false);
+      } catch {
+        setMessage('Reset failed.', true);
+      }
+    });
+  </script>
+</body>
+</html>

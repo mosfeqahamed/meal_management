@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h2>Dashboard</h2>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>  |
+    <a href="add_member.html">Add Member</a> |
+    <a href="add_meal.html">Meal</a> |
+    <a href="add_payment.html">Add Payment</a> | |
+    <a href="index.html" onclick="logout()">Logout</a>
+  </nav>
+  <h2>Monthly Report</h2>
+  <form id="reportForm">
+    <!-- month picker: YYYY-MM -->
+    <input type="month" id="reportMonthYear" required />
+    <button type="submit">Get Report</button>
+  </form>
+  <table id="reportTable"></table>
+  <script src="js/utils.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>

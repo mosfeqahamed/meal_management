@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Payment</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>  |
+    <a href="add_member.html">Add Member</a> |
+    <a href="add_meal.html">Meal</a> |
+    <a href="add_payment.html">Add Payment</a> | |
+    <a href="index.html" onclick="logout()">Logout</a>
+  </nav>
+  <h2>Add Payment</h2>
+  <form id="paymentForm">
+    <select id="paymentMember"></select>
+    <input type="date" id="paymentDate" required />
+    <input type="number" id="paymentAmount" placeholder="Amount" required />
+    <button type="submit">Add Payment</button>
+  </form>
+  <script src="js/utils.js"></script>
+  <script src="js/payments.js"></script>
+
+</body>
+</html>

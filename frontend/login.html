@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ADDED: hide/show forms */
+    .hidden { display: none; }
+    /* ADDED: toggle link style */
+    .toggle-link {
+      display: block;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      color: #007bff;
+      cursor: pointer;
+    }
+    .toggle-link:hover { text-decoration: underline; }
+    /* ADDED: feedback messages */
+    .message {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .message.error { color: #c00; }
+    .message.success { color: #080; }
+  </style>
+</head>
+<body>
+  <h2>Login</h2>
+
+  <!-- LOGIN FORM (existing) -->
+  <form id="loginForm">
+    <input type="email" id="loginEmail" placeholder="Email" required />
+    <input type="password" id="loginPassword" placeholder="Password" required />
+    <button type="submit">Login</button>
+    <!-- ADDED: link to show the “forgot password” form -->
+    <!--  <span id="showForgot" class="toggle-link">Forgot password?</span> -->
+    <a href="resetpass.html" class="toggle-link">Forgot password?</a>
+  </form>
+
+  <!-- ADDED: Forgot-password form (request reset email) -->
+  <form id="forgotForm" class="hidden">
+    <h3>Reset Password</h3>
+    <input type="email" id="forgotEmail" placeholder="Enter your email" required />
+    <button type="submit">Send reset link</button>
+    <span id="showLogin" class="toggle-link">Back to login</span>
+  </form>
+
+  <!-- ADDED: Reset-password form (enter uid, token, new password) -->
+  <form id="resetForm" class="hidden">
+    <h3>Set New Password</h3>
+    <input type="text" id="resetUid" placeholder="UID (from email link)" required />
+    <input type="text" id="resetToken" placeholder="Token (from email link)" required />
+    <input type="password" id="resetPassword" placeholder="New password" required />
+    <button type="submit">Submit new password</button>
+    <span id="showLogin2" class="toggle-link">Back to login</span>
+  </form>
+
+  <!-- ADDED: area for success/error feedback -->
+  <div id="message" class="message"></div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

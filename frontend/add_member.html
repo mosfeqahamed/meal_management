@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Member</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>  |
+    <a href="add_member.html">Add Member</a> |
+    <a href="add_meal.html">Meal</a> |
+    <a href="add_payment.html">Add Payment</a> | |
+    <a href="index.html" onclick="logout()">Logout</a>
+  </nav>
+  <h2>Add Member</h2>
+  <form id="memberForm">
+    <input type="text" id="memberName" placeholder="Name" required />
+    <button type="submit">Add Member</button>
+  </form>
+  <script src="js/utils.js"></script>
+  <script src="js/members.js"></script>
+</body>
+</html>

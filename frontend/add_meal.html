@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Monthly Meal Summary</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    table { border-collapse: collapse; width: 100%; margin-top: 1em; }
+    th, td { border: 1px solid #ccc; padding: 0.5em; text-align: center; }
+    th { background: #f0f0f0; }
+    .sticky { position: sticky; left: 0; background: #fff; }
+  </style>
+</head>
+<body>
+<nav>
+    <a href="dashboard.html">Dashboard</a>  |
+    <a href="add_member.html">Add Member</a> |
+    <a href="add_meal.html">Meal</a> |
+    <a href="add_payment.html">Add Payment</a> | |
+    <a href="index.html" onclick="logout()">Logout</a>
+  </nav>
+  <h2>Add Meal</h2>
+  <form id="mealForm">
+    <select id="mealMember"></select>
+    <input type="date" id="mealDate" required />
+    <input type="number" id="mealCount" placeholder="Count" required />
+    <button type="submit">Add Meal</button>
+  </form>
+
+  <h2>Monthly Meal Summary</h2>
+
+  <form id="reportForm">
+    <label>
+      Select Month:
+      <!-- CHANGED: use a single month picker instead of two number inputs -->
+      <input type="month" id="reportMonthYear" required>
+    </label>
+    <button type="submit">Show Summary</button>
+  </form>
+
+  <div id="tableContainer"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/meals.js"></script>
+</body>
+</html>
