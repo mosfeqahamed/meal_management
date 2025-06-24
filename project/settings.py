@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
     'djoser',
     'accounts',
@@ -74,13 +73,12 @@ SIMPLE_JWT = {
 
 
 DJOSER = {
-    #'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
-    'PASSWORD_RESET_CONFIRM_URL':'http://127.0.0.1:8000/static/resetpass.html?uid={uid}&token={token}',
     'SEND_ACTIVATION_EMAIL': False,
     'SEND_CONFIRMATION_EMAIL': False,
-    'EMAIL': {
-        'password_reset': 'djoser.email.PasswordResetEmail',
-    }
+    'URLS': {
+        'password_reset':          None,
+        'password_reset_confirm':  None,
+    },
 }
 
 MIDDLEWARE = [

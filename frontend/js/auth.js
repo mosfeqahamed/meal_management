@@ -2,10 +2,17 @@ const API_BASE = 'http://127.0.0.1:8000';
 
 // helper: show exactly one form, hide the others
 function showForm(id) {
-  ['loginForm', 'forgotForm', 'resetForm'].forEach(f => {
-    document.getElementById(f)?.classList.toggle('hidden', f !== id);
+  // CHANGED: Removed 'forgotForm' and 'resetForm' as they are no longer in login.html
+  ['loginForm'].forEach(f => {
+    const formElement = document.getElementById(f);
+    if (formElement) {
+        formElement.classList.toggle('hidden', f !== id);
+    }
   });
-  document.getElementById('message').textContent = '';
+  const messageElement = document.getElementById('message');
+  if(messageElement) {
+      messageElement.textContent = '';
+  }
 }
 
 // helper: display feedback
@@ -34,48 +41,6 @@ document.getElementById('loginForm')?.addEventListener('submit', async e => {
     window.location.href = 'dashboard.html';
   } catch {
     setMessage('Login failed. Check your credentials.', true);
-  }
-});
-
-// ─── TOGGLE FORMS ──────────────────────────────────────────────────
-document.getElementById('showForgot')?.addEventListener('click', () => showForm('forgotForm'));
-document.getElementById('showLogin') ?.addEventListener('click', () => showForm('loginForm'));
-document.getElementById('showLogin2')?.addEventListener('click', () => showForm('loginForm'));
-
-// ─── REQUEST RESET EMAIL ───────────────────────────────────────────
-document.getElementById('forgotForm')?.addEventListener('submit', async e => {
-  e.preventDefault();
-  const email = document.getElementById('forgotEmail').value;
-  try {
-    const res = await fetch(`${API_BASE}/auth/users/reset_password/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    if (!res.ok) throw new Error();
-    setMessage('Reset link sent! Check your email.');
-  } catch {
-    setMessage('Failed to send reset link.', true);
-  }
-});
-
-// ─── SUBMIT NEW PASSWORD ───────────────────────────────────────────
-document.getElementById('resetForm')?.addEventListener('submit', async e => {
-  e.preventDefault();
-  const uid          = document.getElementById('resetUid').value;
-  const token        = document.getElementById('resetToken').value;
-  const new_password = document.getElementById('resetPassword').value;
-  try {
-    const res = await fetch(`${API_BASE}/auth/users/reset_password_confirm/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ uid, token, new_password })
-    });
-    if (!res.ok) throw new Error();
-    setMessage('Password reset! You can now log in.');
-    showForm('loginForm');
-  } catch {
-    setMessage('Failed to reset password.', true);
   }
 });
 
@@ -110,3 +75,20 @@ document.getElementById('registerForm')?.addEventListener('submit', async e => {
     setMessage('Network error. Please try again.', true);
   }
 });
+
+
+// CHANGED: The entire password reset logic below has been removed.
+// The password reset flow is now fully contained within `resetpass.html`.
+// This prevents confusion and keeps the `auth.js` file focused on login/registration.
+/*
+// ─── TOGGLE FORMS ──────────────────────────────────────────────────
+document.getElementById('showForgot')?.addEventListener('click', () => showForm('forgotForm'));
+document.getElementById('showLogin') ?.addEventListener('click', () => showForm('loginForm'));
+document.getElementById('showLogin2')?.addEventListener('click', () => showForm('loginForm'));
+
+// ─── REQUEST RESET EMAIL ───────────────────────────────────────────
+document.getElementById('forgotForm')?.addEventListener('submit', async e => { ... });
+
+// ─── SUBMIT NEW PASSWORD ───────────────────────────────────────────
+document.getElementById('resetForm')?.addEventListener('submit', async e => { ... });
+*/
