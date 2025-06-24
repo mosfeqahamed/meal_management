@@ -22,7 +22,7 @@ A simple meal‐management web app with JWT-based auth and password-reset via em
 ## 🚀 Features
 
 - **User**: register, login (JWT), logout  
-- **Password Reset**: “forgot password” flow powered by Djoser + Gmail SMTP  
+- **Password Reset**: “forgot password” flow powered by varification code + Gmail SMTP  
 - **Members**: CRUD member profiles  
 - **Meals**: log daily meal counts per member  
 - **Payments**: record bazaar/payments per member  
